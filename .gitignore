@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.claude/
+
+# Generated outputs (regenerate via gpx_visualizer.py)
+*.gpx
+*_profile.png
+*_map.html
+*_3d.png
+*_terrain.png
+*_walk.mp4
+*_walk.gif
+
+# Local elevation-tile cache
+.cache/
