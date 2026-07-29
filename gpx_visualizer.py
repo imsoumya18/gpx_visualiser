@@ -744,8 +744,9 @@ def main():
     )
     parser.add_argument(
         "--video", action="store_true",
-        help="Render an animated GIF of the walk progressing along the 3D terrain (a moving "
-             "marker + the path being drawn in) instead of a static PNG. Implies --terrain.",
+        help="Render an mp4 of the walk progressing along the 3D terrain: a chase camera "
+             "follows the moving path, then pulls back to a full overview at the end. "
+             "Instead of a static PNG.",
     )
     parser.add_argument(
         "--video-frames", type=int, default=90,
