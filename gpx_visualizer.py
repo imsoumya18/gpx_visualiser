@@ -482,7 +482,7 @@ def plot_terrain_relief(
         dist = np.minimum(dist, np.sqrt(ddx**2 + ddy**2).min(axis=-1))
 
     # Hard-edged path: a crisp cutoff at path_width, no gradient/opacity falloff.
-    path_width = m["cellsize"] * 1.1
+    path_width = m["cellsize"] * 0.55
     orange = np.array([1.0, 0.55, 0.10])
     rgb = m["base_rgb"].copy()
     rgb[dist <= path_width] = orange
@@ -561,7 +561,7 @@ def render_walk_video(
     dense_z_raw = np.interp(d_new, d, track_z_raw)
     total_distance_km = stats["distances"][-1]
 
-    path_width = cellsize * 1.1
+    path_width = cellsize * 0.55
     orange = np.array([1.0, 0.55, 0.10])
 
     fig = plt.figure(figsize=(11, 9), dpi=100)  # lower dpi than the static PNG -- animated GIFs
@@ -635,10 +635,7 @@ def render_walk_video(
     reveal_frames = max(n_frames - zoom_out_frames, 1)
 
     print(f"Rendering animation frames -> {output_path} (this can take a while) ...")
-    writer = imageio.get_writer(
-        str(output_path), fps=fps, codec="libx264", quality=5,
-        output_params=["-pix_fmt", "yuv420p"],
-    )
+    writer = imageio.get_writer(str(output_path), fps=fps, codec="libx264", quality=5)
     for frame_i in range(n_frames):
         reveal_frame_i = min(frame_i, reveal_frames - 1)
         revealed = max(int((reveal_frame_i + 1) / reveal_frames * n_dense), 1)
